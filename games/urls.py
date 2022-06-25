@@ -11,3 +11,4 @@ urlpatterns = [
     # path('', ListAllGameLicense.as_view(), name='list_create_ListAllGameLicense'),
 
     # path('<pk>', ExpenseReUpDeView.as_view(), name='retrieve_update_delete')
+    # l
