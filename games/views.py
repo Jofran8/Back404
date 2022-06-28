@@ -1,8 +1,12 @@
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView, RetrieveAPIView
-from rest_framework import permissions
+from logging import raiseExceptions
+from urllib import response
+from requests import Response
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView, RetrieveAPIView, CreateAPIView
+from rest_framework import permissions, status
 
-from .serializers import GameSerializers, GameReviewSerializers, GameLicenseSerializers
+from .serializers import GameSerializers, GameReviewSerializers, GameLicenseSerializers, BuyGameSerializers
 from .models import Game, GameReview, GameLicense
+from order.models import Order
 
 
 class ListAllGame(ListAPIView):
@@ -43,12 +47,32 @@ class GamesReUpDeView(RetrieveUpdateDestroyAPIView):
 #     queryset = GameReview.objects.all()
 #     serializer_class = GameReviewSerializers
 
-# class ListAllGameLicense(ListAPIView):
-#     queryset = GameLicense.objects.all()
-#     serializer_class = GameLicenseSerializers
+#class ListAllGameLicense(ListAPIView):
+#   queryset = GameLicense.objects.all()
+#   serializer_class = GameLicenseSerializers
 
 
-# class GetGameLicenseById(RetrieveAPIView):
-#     queryset = GameLicense.objects.all()
-#     serializer_class = GameLicenseSerializers
+#class GetGameLicenseById(RetrieveAPIView):
+#    queryset = GameLicense.objects.all()
+#    serializer_class = GameLicenseSerializers
 
+class LicenseListCreateView(ListCreateAPIView):
+    serializer_class = GameLicenseSerializers
+    queryset = GameLicense.objects.all()
+
+    #def perform_create(self, serializer):
+    #    return serializer.save(user=self.request.user)
+
+    #def get_queryset(self):
+    #    return self.queryset.filter(user=self.request.user)
+
+class BuyGamesView(CreateAPIView):
+    serializer_class = BuyGameSerializers
+    queryset = Order.objects.all()
+
+    def post(self, request):
+        serializer = self.get_serializer(data=request.data)
+
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({'message': 'python'})

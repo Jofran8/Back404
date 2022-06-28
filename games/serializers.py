@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Game, GameReview, GameLicense
+from order.models import Order
 
 class GameSerializers(serializers.ModelSerializer):
     class Meta:
@@ -36,5 +37,9 @@ class GameLicenseSerializers(serializers.ModelSerializer):
         #     'key',
         #     'active',
         # ]
-   
+
+class BuyGameSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = '__all__'
 

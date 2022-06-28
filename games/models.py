@@ -8,7 +8,7 @@ class Game(models.Model):
     name = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     image = models.CharField(max_length=255)
-    image_frontpage = models.CharField(max_length=255)
+    video_profile_cover = models.CharField(max_length=255)
     mode = models.TextField()
     platforms = models.TextField()
     genre = models.TextField()
