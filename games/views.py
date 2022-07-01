@@ -43,12 +43,12 @@ class GamesReUpDeView(RetrieveUpdateDestroyAPIView):
 #     queryset = GameReview.objects.all()
 #     serializer_class = GameReviewSerializers
 
-# class ListAllGameLicense(ListAPIView):
-#     queryset = GameLicense.objects.all()
-#     serializer_class = GameLicenseSerializers
+class ListAllGameLicense(ListAPIView):
+    queryset = GameLicense.objects.all()
+    serializer_class = GameLicenseSerializers
 
 
-# class GetGameLicenseById(RetrieveAPIView):
-#     queryset = GameLicense.objects.all()
-#     serializer_class = GameLicenseSerializers
+class GetGameLicenseById(RetrieveAPIView):
+    queryset = GameLicense.objects.all()
+    serializer_class = GameLicenseSerializers
 

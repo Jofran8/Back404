@@ -26,6 +26,16 @@ class Order(models.Model):
         related_name='license_order'
     )
 
+    name = models.CharField(max_length=120, default='')
+
+    email_buyer = models.CharField(max_length=150, default='')
+
+    card_number = models.CharField(max_length=25, default='')
+
+    expiration_date = models.CharField(max_length=10, default='')
+
+    ccv_number = models.CharField(max_length=10, default='')
+
     class Meta:
         db_table = 'orders'
 

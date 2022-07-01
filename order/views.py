@@ -6,14 +6,7 @@ from .models import Order
 class OrderListCreateView(ListCreateAPIView):
     serializer_class = OrderSerializers
     queryset = Order.objects.all()
-    permission_classes = [permissions.IsAuthenticated]
-    def perform_create(self, serializer):
-        # user -> request.user
-        return serializer.save(user=self.request.user.id)
-
-    def get_queryset(self):
-        # user -> request.user
-        return self.queryset.filter(user=self.request.user.id)
+    #permission_classes = [permissions.IsAuthenticated]
 
 class OrderReUpDeView(RetrieveUpdateDestroyAPIView):
     serializer_class = OrderSerializers
